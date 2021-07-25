@@ -1,6 +1,6 @@
 interface IProps {
   id: string;
-  name: string | undefined;
+  name: string;
   handleFinish: (id: string) => void;
 }
 

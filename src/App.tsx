@@ -1,12 +1,12 @@
 import { useRef, useState } from "react";
 import TodoList from "./components/TodoList";
 interface TodosProp {
-  name: string | undefined;
+  name: string;
   id: string;
 }
 
 const App: React.FC = () => {
-  const targetRef = useRef<HTMLInputElement | null>(null);
+  const targetRef = useRef<HTMLInputElement>(null!);
   const [todos, setTodos] = useState<TodosProp[]>([]);
 
   const handleAdd = (e: React.FormEvent<HTMLFormElement>): void => {
@@ -14,9 +14,10 @@ const App: React.FC = () => {
 
     const newTodos = [
       ...todos,
-      { name: targetRef.current?.value, id: Date.now().toLocaleString() },
+      { name: targetRef.current.value, id: Date.now().toLocaleString() },
     ];
     setTodos(newTodos);
+    targetRef.current.value = "";
   };
 
   const handleFinish = (id: string): void => {
